@@ -21,10 +21,17 @@ const words = [
 ];
 let palabraAleatoria;
 let palabraIngresada = "";
+let timeInterval ;
 let palabraH1 = document.querySelector("#randomWord");
 let inputText = document.querySelector("#text");
 let timeSpan = document.querySelector("#timeSpan");
 let score = document.querySelector("#score");
+let iniciarJuego = document.querySelector("#iniciar")
+let reiniciarJuego = document.querySelector("#resetear")
+let divmain = document.querySelector(".main")
+
+
+
 
 function randomWords() {
   let numRandom = Math.random() * words.length - 1;
@@ -35,15 +42,37 @@ function randomWords() {
 }
 
 function validarPalabra(palabra1, palabra2) {
-  // console.log(palabra1 + " " + palabra2);
   if (palabra1 === palabra2) {
     inputText.value = "";
     palabraIngresada = "";
-    timeSpan.textContent = parseInt(timeSpan.textContent) + 3 + "s";
+    timeSpan.textContent = parseInt(timeSpan.textContent) + 3;
     score.textContent = parseInt(score.textContent) + 1;
     randomWords();
   }
 }
+
+function actualizarTiempo(){
+    if( parseInt(timeSpan.textContent) > 0){
+      timeSpan.textContent = parseInt(timeSpan.textContent)- 1
+    }else{
+      clearInterval(timeInterval);
+    }
+}
+
+function jugar(){ 
+  timeInterval =  setInterval(actualizarTiempo, 1000);
+}
+
+iniciarJuego.addEventListener("click", () =>{   
+  reiniciarJuego.classList.toggle("oculto")
+  iniciarJuego.classList.toggle("oculto")
+  jugar() 
+})
+
+reiniciarJuego.addEventListener("click", () =>{
+  timeSpan.textContent = 10
+  score.textContent = 0
+})
 
 inputText.addEventListener("keyup", () => {
   palabraIngresada = inputText.value;
