@@ -28,7 +28,7 @@ let timeSpan = document.querySelector("#timeSpan");
 let score = document.querySelector("#score");
 let iniciarJuego = document.querySelector("#iniciar")
 let reiniciarJuego = document.querySelector("#resetear")
-let divmain = document.querySelector(".main")
+let gameOver = document.querySelector("#end-game-container")
 
 
 
@@ -56,6 +56,7 @@ function actualizarTiempo(){
       timeSpan.textContent = parseInt(timeSpan.textContent)- 1
     }else{
       clearInterval(timeInterval);
+      gameOver.textContent = `tu puntuacion fue de: ${score.textContent}`
     }
 }
 
@@ -70,7 +71,8 @@ iniciarJuego.addEventListener("click", () =>{
 })
 
 reiniciarJuego.addEventListener("click", () =>{
-  timeSpan.textContent = 10
+  gameOver.textContent = ""
+  timeSpan.textContent = "10s"
   score.textContent = 0
 })
 
