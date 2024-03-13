@@ -74,6 +74,7 @@ reiniciarJuego.addEventListener("click", () =>{
   gameOver.textContent = ""
   timeSpan.textContent = "10s"
   score.textContent = 0
+  jugar()
 })
 
 inputText.addEventListener("keyup", () => {
